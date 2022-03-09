@@ -1,0 +1,6 @@
+.custome-table-scrollbar {
+  position: relative;
+  height: 80px;
+  overflow: auto;
+  /* display: block; */
+}
