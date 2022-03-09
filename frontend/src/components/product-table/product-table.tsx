@@ -34,7 +34,7 @@ function ProductTable() {
           </tr>
         </thead>
         <tbody>
-          {products.length !== 0 || typeof products !== "undefined" ? (
+          { products.length !== 0 ? (
             products.map((item: Product, index: number) => (
               <tr key={convertTimeToUnix.toString()}>
                 <th>{index}</th>
@@ -52,12 +52,8 @@ function ProductTable() {
               </tr>
             ))
           ) : (
-            <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
+            <tr className="text-center">
+                Product is Empty
             </tr>
           )}
         </tbody>
