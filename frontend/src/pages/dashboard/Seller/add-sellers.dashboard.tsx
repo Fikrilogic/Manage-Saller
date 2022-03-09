@@ -1,7 +1,7 @@
 import React from "react";
 import ProductTable from "../../../components/product-table/product-table";
 import { Product } from "../../../models/product";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../../../redux/store";
 import {
@@ -28,6 +28,7 @@ function AddSellerDashboard() {
 
   const dispatch = useAppDispatch();
   const { products } = useSelector(productSelector);
+  const navigate = useNavigate();
 
   const addProductToList = (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -43,12 +44,31 @@ function AddSellerDashboard() {
     dispatch(addSeller({ name, address, product: products }));
     dispatch(resetProductsAfterSubmit());
     setSellerData(initialSellerState);
+    navigate("../sellers");
   };
 
   return (
     <div className="col-lg-12 p-3">
       <div className="col-sm-3 mx-4 my-4">
         <h2 className="card-title text-capitalize">Add New Sellers</h2>
+      </div>
+
+      <div
+        className="toast bg-success"
+        role={"alert"}
+        aria-live="assertive"
+        aria-atomic="true"
+        id="toastSuccess"
+      >
+        <div className="toast-body d-flex">
+          <h5 className="me-auto">Success added data</h5>
+
+          <button
+            className="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="close"
+          ></button>
+        </div>
       </div>
 
       <div className="col-md-7 mt-5 ms-5 border border-primary rounded-3 p-5">
@@ -95,10 +115,11 @@ function AddSellerDashboard() {
           <div>Products</div>
           <div className="col-12 mb-2  w-100">
             <div className="row">
-              <div className="col-5">
+              <div className="col-4 form-floating">
                 <input
                   type="text"
                   className="form-control"
+                  id="productName"
                   placeholder="Name"
                   value={product.name}
                   onChange={(e: React.FormEvent<HTMLInputElement>): void => {
@@ -109,12 +130,14 @@ function AddSellerDashboard() {
                     }));
                   }}
                 />
+                <label htmlFor="productName">Name</label>
               </div>
-              <div className="col-3">
+              <div className="col-3 form-floating ">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   placeholder="Price"
+                  id="productPrice"
                   value={product.price}
                   onChange={(e: React.FormEvent<HTMLInputElement>): void => {
                     const { value } = e.currentTarget;
@@ -124,12 +147,14 @@ function AddSellerDashboard() {
                     }));
                   }}
                 />
+                <label htmlFor="productPrice">Price</label>
               </div>
-              <div className="col-2">
+              <div className="col-2 form-floating">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   placeholder="stock"
+                  id="productStock"
                   value={product.stock}
                   onChange={(e: React.FormEvent<HTMLInputElement>): void => {
                     const { value } = e.currentTarget;
@@ -139,6 +164,7 @@ function AddSellerDashboard() {
                     }));
                   }}
                 />
+                <label htmlFor="productStock">Stock</label>
               </div>
               <div className="col-2">
                 <button className="btn btn-success" onClick={addProductToList}>
@@ -153,9 +179,12 @@ function AddSellerDashboard() {
             <button className="btn btn-primary" onClick={submitSeller}>
               Submit
             </button>
-            <button className="btn btn-danger">
-              <Link to="./seller">Cancel</Link>
-            </button>
+            <Link
+              to="../sellers"
+              className="btn btn-danger text-decoration-none"
+            >
+              Cancel
+            </Link>
           </div>
         </form>
       </div>

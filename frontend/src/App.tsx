@@ -13,7 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           /
-          <Route path="/" element={<Navigate to={"dashboard"} />} />
+          <Route path="/" element={<Navigate to={"dashboard/sellers"} />} />
           <Route path="dashboard" element={<Dashboard />}>
             <Route path="sellers" element={<LookSeller />} />
             <Route path="sellers/add" element={<AddSellerDashboard />} />

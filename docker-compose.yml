@@ -17,9 +17,6 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./backend
-      target: development
-    volumes:
-      - ./backend:/backend
     ports:
       - "4000:4000"
     depends_on:

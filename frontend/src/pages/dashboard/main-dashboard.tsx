@@ -20,7 +20,7 @@ function Dashboard() {
       </div>
       <div className="container-fluid d-flex content-container p-0">
         <Sidebar />
-        <div className="col-lg-10 mx-auto">
+        <div className="col-lg-12 mx-auto overflow-auto p-5">
           <Outlet />
         </div>
       </div>

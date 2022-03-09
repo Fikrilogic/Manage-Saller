@@ -14,8 +14,8 @@ function EditSellerDashboard() {
   }, [dispatch]);
 
   return (
-    <div className="col-lg-12">
-      <div className="w-100 mx-4 my-4">
+    <div className="col-lg-7 px-5">
+      <div className="w-50 mt-3 mb-5">
         <h2 className="card-title text-capitalize">Edit Seller</h2>
       </div>
 

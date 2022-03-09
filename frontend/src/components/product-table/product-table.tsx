@@ -14,7 +14,9 @@ function ProductTable() {
   const deleteProduct = (event: React.SyntheticEvent) => {
     event.preventDefault();
     const currentIndex =
-      event.currentTarget.parentNode?.parentNode?.firstChild?.textContent;
+      event.currentTarget.parentNode?.parentElement?.getAttribute(
+        "data-reactid"
+      );
 
     if (typeof currentIndex === "string") {
       dispatch(deleteDataFromProducts(+currentIndex));
@@ -34,10 +36,10 @@ function ProductTable() {
           </tr>
         </thead>
         <tbody>
-          { products.length !== 0 ? (
+          {products.length !== 0 ? (
             products.map((item: Product, index: number) => (
-              <tr key={convertTimeToUnix.toString()}>
-                <th>{index}</th>
+              <tr key={convertTimeToUnix.toString()} data-reactid={index}>
+                <th>{index + 1}</th>
                 <th>{item.name}</th>
                 <th>{item.stock}</th>
                 <th>{item.price}</th>
@@ -52,9 +54,7 @@ function ProductTable() {
               </tr>
             ))
           ) : (
-            <tr className="text-center">
-                Product is Empty
-            </tr>
+            <tr className="text-center">Product is Empty</tr>
           )}
         </tbody>
       </table>
